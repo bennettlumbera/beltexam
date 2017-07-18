@@ -6,7 +6,7 @@ from django.contrib import messages
 # Create your views here.
 def home(request):
     quotes = Quote.objects.exclude(quote_favorites__user__id=request.session['user_id'])
-    favorites = Favorite.objects.all()
+    favorites = Favorite.objects.filter(user_id=request.session['user_id'])
     context={
         'quotes':quotes,
         'favorites': favorites
